@@ -1,0 +1,43 @@
+/**
+BASE.CSS
+
+Rather than a reset, this sets the default styles on elements to something
+sensible.
+*/
+
+body {
+	padding: 0;
+	margin: 0;
+	font-size: 0.75em;
+}
+ul {
+	list-style: none;
+	margin-left: 0;
+	padding-left: 0;
+}
+h1,h2,h3,h4,h5,h6 {
+	color: #333333;
+	margin: 0.4em 0 0.6em;
+	position: relative;
+}
+h2 {
+	font-size: 2em;
+}
+p {
+	margin: 0.2em 0 0.8em;
+}
+ul, ol {
+	margin: 0;
+	padding: 0;
+}
+li {
+	margin: 0;
+	padding: 0.2em;
+}
+table {
+	font-size: inherit;
+	border-collapse: collapse;
+}
+table td {
+	padding-left: 0.1em;
+}

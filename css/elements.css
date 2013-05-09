@@ -1,0 +1,47 @@
+/**
+ELEMENTS
+
+Discrete styled elements that we can use at a base level and then style more appropriately,
+either by combining other styles, or creating specific styles.
+*/
+
+
+/* horizontal list */
+ul.horizlist {
+	list-style: none;
+}
+ul.horizlist li {
+	display: inline-block;
+}
+
+
+/* simple nudges */
+.right {
+	float: right;
+}
+.left {
+	float: left;
+}
+
+
+/* button class makes nice buttons */
+.button {
+	color: white;
+	font-size: 0.8em;
+	font-weight: bold;
+	font-family: arial, sans-serif;
+	text-align: center;
+	width: 5em;
+	line-height: 1em;
+	padding: 0.6em 0.8em;
+	display: inline-block;
+	background-color: #51A2FF;
+	border-radius: 2px;
+	border: 1px solid #4B93E5;
+}
+.button:hover {
+
+}
+a.button {
+	text-decoration: none;
+}
