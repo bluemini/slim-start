@@ -1,0 +1,133 @@
+/*
+ * main.css
+ * 
+ * Author:  Nick Harvey (diego.perini at gmail.com)
+ * Summary: Getting started CSS for a general web page
+ * Updated: 20120510
+ * License: MIT - see LICENSE file in the root of the project
+ * Version: 0.2
+ *
+ * URL:
+ * https://github.com/bluemini/slim-start
+ */
+
+@import "base.css";
+@import "elements.css";
+
+
+#main_content {
+	font-family: Verdana;
+	max-width: 800px;
+	margin: auto;
+	padding: 0 10px 20px;
+	border-top: 1px solid gray;
+	border-left: 1px solid gray;
+	border-bottom: 1px solid gray;
+	color: #246;
+	box-shadow: 5px 5px 5px grey;
+}
+
+
+
+#main_header {
+	background-color: #7F0037;
+	color: white;
+	font-family: Candara,'DejaVu Sans';
+	font-size: 1.5em;
+	margin: 0 -0.555555em;
+	padding: 2em 0.555555em 0.4em;
+	position: relative;
+}
+#main_header h1 {
+	margin: 0;
+	padding: 0;
+	font-size: inherit;
+	color: inherit;
+}
+
+
+/* the top nav is the list of links in the header */
+#top_nav {
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	font-size: 0.8em;
+}
+#top_nav li {
+	background-color: #336633;
+	border-radius: 3px 3px 0 0;
+	margin-right: 3px;
+	padding: 0.2em 0.4em;
+}
+#top_nav a {
+	text-decoration: none;
+	color: #FFF;
+}
+
+
+
+.detail .symbol {
+	text-decoration: none;
+	font-size: 2.5em;
+	font-weight: bold;
+}
+
+
+
+.heading-bar {
+	border-top: 2px solid #333;
+	line-height: 1.8em;
+	padding: 0.2em 0;
+	position: relative;
+	margin-top: 2em;
+}
+.heading-bar:first-child {
+	margin-top: 0;
+}
+.heading.button.right {
+	position: absolute;
+	right: 0;
+	top: 0;	
+}
+
+
+
+/* the follow button */
+.button.follow { background: #CCC; }
+.button.follow:before { content: 'Follow'; }
+.button.follow:hover { background: #BBB; color: #666; }
+/* the following button */
+.button.following { background: #51A2FF; }
+.button.following:before { content: 'Following'; }
+.button.following:hover { background: #BBB; color: #666; }
+
+
+
+
+/* page specific id based styles */
+#savegaparams {
+	background-color: yellow;
+	padding: 0.4em 0.8em;
+	font-weight: bold;
+	color: white;
+	float: right;
+}
+
+
+li.x {
+	border-bottom: 1px solid #666;
+	margin-left: 0;
+	padding: 0.6em 0;
+}
+
+
+table thead tr {
+	background-color: #AAA;
+	font-weight: 600;
+}
+table thead td {
+	padding: 0.4em;
+}
+table tr:nth-child(2n) {
+	background-color: #EEE;
+}

@@ -1,3 +1,16 @@
+/*!
+ * cyn.js
+ *	
+ * Author: Nick Harvey (diego.perini at gmail.com)
+ * Summary: Small JS framework for basic DOM and event handling
+ * Updated: 20120510
+ * License: MIT - see LICENSE file in the root of the project
+ * Version: 0.2
+ *
+ * URL:
+ * https://github.com/bluemini/slim-start
+ */
+
 cyn = function() {
 	var scope = {};
 	scope.win = window;

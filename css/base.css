@@ -1,19 +1,31 @@
-/**
-BASE.CSS
-
-Rather than a reset, this sets the default styles on elements to something
-sensible.
-*/
+/*
+ * base.css
+ *
+ * Author: Nick Harvey (diego.perini at gmail.com)
+ * Summary: Core CSS setup to sensible defaults, rather than a full reset
+ * Updated: 20120510
+ * License: MIT - see LICENSE file in the root of the project
+ * Version: 0.2
+ *
+ * URL:
+ * https://github.com/bluemini/slim-start
+ *
+ */
 
 body {
 	padding: 0;
 	margin: 0;
 	font-size: 0.75em;
+	font-family: verdana, arial, sans-serif;
 }
 ul {
 	list-style: none;
 	margin-left: 0;
 	padding-left: 0;
+}
+p,ul,ol {
+	margin: 0.2em 0 0.8em;
+	padding: 0;
 }
 h1,h2,h3,h4,h5,h6 {
 	color: #333333;
@@ -22,13 +34,6 @@ h1,h2,h3,h4,h5,h6 {
 }
 h2 {
 	font-size: 2em;
-}
-p {
-	margin: 0.2em 0 0.8em;
-}
-ul, ol {
-	margin: 0;
-	padding: 0;
 }
 li {
 	margin: 0;

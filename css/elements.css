@@ -1,9 +1,16 @@
-/**
-ELEMENTS
-
-Discrete styled elements that we can use at a base level and then style more appropriately,
-either by combining other styles, or creating specific styles.
-*/
+/*
+ * elements.css
+ *
+ * Author: Nick Harvey (diego.perini at gmail.com)
+ * Summary: Discrete styled elements that we can use at a base level and then style more appropriately
+ * Updated: 20120510
+ * License: MIT - see LICENSE file in the root of the project
+ * Version: 1.2
+ *
+ * URL:
+ * https://github.com/bluemini/slim-start
+ *
+ */
 
 
 /* horizontal list */
