@@ -1,0 +1,45 @@
+<html>
+<head>
+	<link href="./css/main.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+<div id="main_content">
+	<h2>Example of Partial Application of Functions</h2>
+
+	<pre>
+		&lt;script>
+
+		// create a function that we will partially apply
+		add = function(num1, num2) {
+			return num1 + num2;
+		}
+
+		// create a new function by partially applying it
+		addTwo = cyn().partial(add, 2);
+
+		// run the function and update the DOM
+		cyn('res').text(addTwo(5));
+
+		&lt;/script>
+	</pre>
+
+	<p id="res"></p>
+</div>
+
+<script src="./scripts/cyn.js"></script>
+<script>
+
+// create a function that we will partially apply
+add = function(num1, num2) {
+	return num1 + num2;
+}
+
+// create a new function by partially applying it
+addTwo = cyn().partial(add, 2);
+
+// run the function and update the DOM
+cyn('res').text(addTwo(5));
+
+</script>
+</body>
+</html>

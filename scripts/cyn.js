@@ -42,6 +42,11 @@ cyn = function() {
 				}
 				return this;
 			},
+			text: function(value) {
+				if (this.core) {
+					this.core.innerHTML += value;
+				}
+			},
 
 			// style shortcuts
 			color: function(color) {
@@ -101,6 +106,13 @@ cyn = function() {
 					return 'localStorage' in window && window['localStorage'] !== null;
 				} catch (e) {
 					return false;
+				}
+			},
+
+			// Some FP helpers
+			partial: function(fn, arg1) {
+				return function(arg2) {
+					return fn.call(null, arg1, arg2);
 				}
 			}
 		}
