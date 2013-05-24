@@ -89,7 +89,7 @@ cyn = function() {
 				if (cynscope.__eventlist && eventName in cynscope.__eventlist) {
 					for (f in cynscope.__eventlist[eventName]) {
 						if (typeof cynscope.__eventlist[eventName][f].fn === 'function') {
-							cynscope.__eventlist[eventName][f].fn.call(cynscope.__eventlist[eventName][f].this);
+							cynscope.__eventlist[eventName][f].fn.call(cynscope.__eventlist[eventName][f]['this']);
 						}
 					}
 				}
@@ -113,7 +113,7 @@ cyn = function() {
 			partial: function(fn, arg1) {
 				return function(arg2) {
 					return fn.call(null, arg1, arg2);
-				}
+				};
 			}
 		}
 	}
