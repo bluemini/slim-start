@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=320; user-scalable=no" />
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+	<title>Interacting with the camera</title>
+	<link href="./css/main.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+<div id="main_content">
+	<h2>Camera Interaction</h2>
+	
+	<p>A test of the 'capture' attribute, when used on an input field of type 'file' and an accept
+	attribute set to 'image/*'. On compatible platforms, this will open a camera (or options to pick
+	the camera). There is no JS yet to process the image once it's been selected.</p>
+	
+	<input type="file" capture="camera" accept="image/*" id="picData">
+	
+	<p id="result"></p>
+</div>
+<script src="./scripts/cyn.js"></script>
+<script src="./scripts/camera.js"></script>
+</body>
+</html>
