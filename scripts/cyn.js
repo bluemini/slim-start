@@ -19,103 +19,115 @@ cyn = function() {
 	scope.add = scope.doc.addEventListener ? 'addEventListener' : 'attachEvent';
 	scope.__eventlist = {};
          
+	var functionCore = {
+		// core: cynscope.elem || null,
+
+		// DOM manipulators
+		before: function(elem) {
+			insertBefore(elem, this.core);
+		},
+		after: function(elem) {
+			// add a child after this element
+			if (this.core.lastChild) {
+				this.core.appendChild(elem);
+			} else {
+				insertBefore(elem, this.core.nextSibling);
+			}
+			return this;
+		},
+		text: function(value) {
+			if (this.core) {
+				this.core.innerHTML += value;
+			}
+		},
+
+		// style shortcuts
+		color: function(color) {
+			this.__dostyle__("color", color);
+		},
+		__dostyle__: function(attr, value) {
+			if (this.core && (this.core.style[attr]) !== undefined) {
+				this.core.style[attr] = value;
+			}
+		},
+
+		/* 	some handlers */
+		/*	BIND
+			====
+			When we have a wrapped element, the bind method will set an event handler
+			against a particular eventName for this entity. The this scope, for the
+			bound event handler, will be set to the element to which it is bound, by
+			default...for now
+		 */
+		bind: function(eventName, fn) {
+			if (this.core){
+				if (!(eventName in cynscope.__eventlist)) {
+					cynscope.__eventlist[eventName] = [];
+				}
+				cynscope.__eventlist[eventName].push({'this': this.core, 'fn': fn});
+				this.core[cynscope.add](cynscope.pre + eventName, fn, false);
+			}
+		},
+		// loader is a shorthand for binding an event to the window onload event
+		loader: function(fn) {
+			cyn(scope.win).bind('onload', fn);
+		},
+		// click is a shorthand way to bind to the click event
+		click: function(handler) {
+			this.bind('click', handler);
+			return this;
+		},
+		__fire__: function(elem, eventName) {
+			//  && eventName in window.lister[elem]
+			if (cynscope.__eventlist && eventName in cynscope.__eventlist) {
+				for (f in cynscope.__eventlist[eventName]) {
+					if (typeof cynscope.__eventlist[eventName][f].fn === 'function') {
+						cynscope.__eventlist[eventName][f].fn.call(cynscope.__eventlist[eventName][f]['this']);
+					}
+				}
+			}
+		},
+		
+		// DOM finder
+		__get__: function(elem_name) {
+			return document.getElementById(elem_name);
+		},
+
+		// some feature detection
+		localStorage: function() {
+			try {
+				return 'localStorage' in window && window['localStorage'] !== null;
+			} catch (e) {
+				return false;
+			}
+		},
+
+		// Some FP helpers
+		partial: function(fn, arg1) {
+			return function(arg2) {
+				return fn.call(null, arg1, arg2);
+			};
+		},
+
+		// some basic feature detection
+		hasWebRtc: function() {
+			navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
+			if (navigator.getUserMedia) {
+				return true;
+			}
+			return false;
+		}
+	};
+	
 	return function(t) {
 		cynscope = scope;
+		var fnCore = Object.create(functionCore);
 		if (typeof t === 'string') {
-			cynscope.elem = cyn().__get__(t);
+			fnCore.core = functionCore.__get__(t);
 		} else if (typeof t === 'object') {
-			cynscope.elem = t;
+			fnCore.core = t;
 		}
-		return {
-			core: cynscope.elem || null,
-
-			// DOM manipulators
-			before: function(elem) {
-				insertBefore(elem, this.core);
-			},
-			after: function(elem) {
-				// add a child after this element
-				if (this.core.lastChild) {
-					this.core.appendChild(elem);
-				} else {
-					insertBefore(elem, this.core.nextSibling);
-				}
-				return this;
-			},
-			text: function(value) {
-				if (this.core) {
-					this.core.innerHTML += value;
-				}
-			},
-
-			// style shortcuts
-			color: function(color) {
-				this.__dostyle__("color", color);
-			},
-			__dostyle__: function(attr, value) {
-				if (this.core && (this.core.style[attr]) !== undefined) {
-					this.core.style[attr] = value;
-				}
-			},
-
-			/* 	some handlers */
-			/*	BIND
-				====
-				When we have a wrapped element, the bind method will set an event handler
-				against a particular eventName for this entity. The this scope, for the
-				bound event handler, will be set to the element to which it is bound, by
-				default...for now
-			 */
-			bind: function(eventName, fn) {
-				if (this.core){
-					if (!(eventName in cynscope.__eventlist)) {
-						cynscope.__eventlist[eventName] = [];
-					}
-					cynscope.__eventlist[eventName].push({'this': this.core, 'fn': fn});
-					this.core[cynscope.add](cynscope.pre + eventName, fn, false);
-				}
-			},
-			// loader is a shorthand for binding an event to the window onload event
-			loader: function(fn) {
-				cyn(scope.win).bind('onload', fn);
-			},
-			// click is a shorthand way to bind to the click event
-			click: function(handler) {
-				this.bind('click', handler);
-				return this;
-			},
-			__fire__: function(elem, eventName) {
-				//  && eventName in window.lister[elem]
-				if (cynscope.__eventlist && eventName in cynscope.__eventlist) {
-					for (f in cynscope.__eventlist[eventName]) {
-						if (typeof cynscope.__eventlist[eventName][f].fn === 'function') {
-							cynscope.__eventlist[eventName][f].fn.call(cynscope.__eventlist[eventName][f]['this']);
-						}
-					}
-				}
-			},
-			
-			// DOM finder
-			__get__: function(elem_name) {
-				return document.getElementById(elem_name);
-			},
-
-			// some feature detection
-			localStorage: function() {
-				try {
-					return 'localStorage' in window && window['localStorage'] !== null;
-				} catch (e) {
-					return false;
-				}
-			},
-
-			// Some FP helpers
-			partial: function(fn, arg1) {
-				return function(arg2) {
-					return fn.call(null, arg1, arg2);
-				};
-			}
-		}
+		return fnCore;
 	}
 }();
 
