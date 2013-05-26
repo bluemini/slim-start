@@ -110,12 +110,21 @@ cyn = function() {
 		},
 
 		// some basic feature detection
+		// WebRTC - for checking if the browser supports capturing video from the local camera
 		hasWebRtc: function() {
 			navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
 			if (navigator.getUserMedia) {
 				return true;
 			}
 			return false;
+		},
+		// check if the browser supports HTML5 storage
+		hasHTML5Storage: function() {
+			try {
+				return 'localStorage' in window && window['localStorage'] !== null;
+			} catch (e) {
+				return false;
+			}
 		}
 	};
 	
